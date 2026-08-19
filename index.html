@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natural Hair Men | Peluquería Masculina</title>
+<meta name="description" content="Natural Hair Men — Peluquería masculina. Estilo, precisión y personalidad. C/ Mendez Nuñez 4, 11300.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black-deep:#050505;
+    --black-carbon:#111111;
+    --white:#F5F5F5;
+    --gray-light:#BDBDBD;
+    --gray-line: rgba(245,245,245,0.14);
+    --ease: cubic-bezier(.16,.84,.44,1);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    background:var(--black-deep);
+    color:var(--white);
+    font-family:'Cormorant Garamond', serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  .serif{ font-family:'Cinzel', serif; }
+  .sans{ font-family:'Oswald', sans-serif; }
+
+  ::selection{ background:var(--white); color:var(--black-deep); }
+
+  /* ---------- utility ---------- */
+  .wrap{ width:100%; max-width:1240px; margin:0 auto; padding:0 28px; }
+  .eyebrow{
+    font-family:'Cinzel', serif;
+    font-size:13px;
+    letter-spacing:0.28em;
+    color:var(--gray-light);
+    text-transform:uppercase;
+    font-weight:500;
+  }
+  .hline{
+    width:56px; height:1px;
+    background:var(--gray-light);
+    opacity:0.6;
+    margin:18px auto;
+  }
+  .hline.left{ margin:18px 0; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-family:'Oswald', sans-serif;
+    font-size:13px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:500;
+    padding:17px 34px;
+    border:1px solid var(--white);
+    color:var(--white);
+    background:transparent;
+    position:relative;
+    overflow:hidden;
+    transition: color .5s var(--ease);
+  }
+  .btn span{ position:relative; z-index:2; }
+  .btn::before{
+    content:"";
+    position:absolute; inset:0;
+    background:var(--white);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition: transform .5s var(--ease);
+    z-index:1;
+  }
+  .btn:hover::before{ transform:scaleX(1); }
+  .btn:hover{ color:var(--black-deep); }
+
+  .btn-fill{
+    background:var(--white);
+    color:var(--black-deep);
+    border:1px solid var(--white);
+  }
+  .btn-fill::before{ background:transparent; }
+  .btn-fill:hover{ color:var(--black-deep); opacity:0.85; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- navbar ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:22px 0;
+    transition: background .5s var(--ease), padding .4s var(--ease), border-color .5s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(5,5,5,0.86);
+    backdrop-filter: blur(10px);
+    padding:14px 0;
+    border-bottom:1px solid var(--gray-line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-logo{
+    font-family:'Cinzel', serif;
+    font-size:15px;
+    letter-spacing:0.18em;
+    font-weight:600;
+    display:flex; align-items:center; gap:10px;
+  }
+  .nav-logo-img{ width:34px; height:34px; object-fit:contain; }
+
+  .burger{
+    display:block;
+    width:26px; height:18px;
+    position:relative;
+    background:none; border:none;
+  }
+  .burger span{
+    position:absolute; left:0; right:0; height:1px; background:var(--white);
+    transition: transform .35s var(--ease), opacity .25s ease;
+  }
+  .burger span:nth-child(1){ top:0; }
+  .burger span:nth-child(2){ top:8px; }
+  .burger span:nth-child(3){ top:16px; }
+  .burger.open span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+  .burger.open span:nth-child(2){ opacity:0; }
+  .burger.open span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+
+  .mobile-menu{
+    position:absolute;
+    top:100%; left:0; right:0;
+    z-index:99;
+    background:rgba(5,5,5,0.98);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--gray-line);
+    display:flex; flex-direction:column;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition: max-height .5s var(--ease), opacity .4s ease;
+  }
+  .mobile-menu.open{ max-height:520px; opacity:1; }
+  .mobile-menu a{
+    font-family:'Cinzel', serif;
+    font-size:16px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:18px 28px;
+    border-top:1px solid var(--gray-line);
+    width:100%;
+    text-align:left;
+  }
+  .mobile-menu-cta{ margin:22px 28px 28px; align-self:flex-start; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    background-color:var(--black-carbon);
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background-image:url('images/hero.jpg');
+    background-size:cover;
+    background-position:center 30%;
+    transform:scale(1.08);
+    animation:heroZoom 18s ease-out forwards;
+  }
+  @keyframes heroZoom{ to{ transform:scale(1); } }
+  .hero-overlay{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.72) 45%, rgba(5,5,5,0.94) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    padding:0 24px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .hero-logo-img{
+    width:clamp(150px,20vw,220px);
+    height:auto;
+    filter:drop-shadow(0 6px 30px rgba(0,0,0,0.5));
+  }
+
+  .hero-sub{
+    font-family:'Oswald', sans-serif;
+    font-size:13px;
+    letter-spacing:0.34em;
+    text-transform:uppercase;
+    color:var(--gray-light);
+    margin-top:26px;
+  }
+  .hero-quote{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(18px,2vw,22px);
+    color:var(--white);
+    margin-top:14px;
+    letter-spacing:0.02em;
+  }
+  .hero-actions{
+    display:flex; gap:18px; flex-wrap:wrap; justify-content:center;
+    margin-top:44px;
+  }
+  .scroll-cue{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    width:1px; height:52px;
+    background:linear-gradient(to bottom, transparent, var(--gray-light));
+    z-index:2;
+  }
+  .scroll-cue::after{
+    content:"";
+    position:absolute; top:0; left:-2px;
+    width:5px; height:5px; border-radius:50%;
+    background:var(--white);
+    animation:scrollDot 2.4s var(--ease) infinite;
+  }
+  @keyframes scrollDot{
+    0%{ top:0; opacity:0; }
+    20%{ opacity:1; }
+    80%{ opacity:1; }
+    100%{ top:46px; opacity:0; }
+  }
+
+  /* ---------- generic section spacing ---------- */
+  section{ position:relative; }
+  .section-pad{ padding:130px 0; }
+  .section-pad-sm{ padding:90px 0; }
+
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 70px; }
+  .section-head h2{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size:clamp(28px,4vw,42px);
+    letter-spacing:0.08em;
+    margin-top:14px;
+  }
+  .section-head p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--gray-light);
+    margin-top:16px;
+  }
+
+  /* ---------- about ---------- */
+  .about{ background:var(--black-deep); }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    align-items:stretch;
+    border:1px solid var(--gray-line);
+  }
+  .about-img{
+    background-image:url('images/about.jpg');
+    background-size:cover;
+    background-position:center;
+    min-height:520px;
+    background-color:var(--black-carbon);
+  }
+  .about-text{
+    padding:70px 64px;
+    display:flex; flex-direction:column; justify-content:center;
+    background:var(--black-carbon);
+  }
+  .about-text .eyebrow{ margin-bottom:18px; }
+  .about-text h2{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size:clamp(26px,3.4vw,36px);
+    letter-spacing:0.06em;
+    line-height:1.25;
+  }
+  .about-text .lead{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:21px;
+    color:var(--gray-light);
+    margin-top:20px;
+  }
+  .about-text .body-copy{
+    font-family:'Cormorant Garamond', serif;
+    font-size:18px;
+    line-height:1.75;
+    color:#D8D8D8;
+    margin-top:26px;
+    max-width:44ch;
+  }
+
+  /* ---------- services ---------- */
+  .services{ background:var(--black-carbon); border-top:1px solid var(--gray-line); border-bottom:1px solid var(--gray-line); }
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--gray-line);
+  }
+  .service-card{
+    background:var(--black-carbon);
+    padding:52px 38px;
+    display:flex; flex-direction:column;
+    min-height:260px;
+    transition: background .45s var(--ease);
+    position:relative;
+  }
+  .service-card:hover{ background:#161616; }
+  .service-index{
+    font-family:'Oswald', sans-serif;
+    font-size:12px;
+    letter-spacing:0.2em;
+    color:var(--gray-light);
+    opacity:0.6;
+  }
+  .service-card h3{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:0.05em;
+    margin-top:22px;
+  }
+  .service-card p{
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    color:var(--gray-light);
+    line-height:1.6;
+    margin-top:14px;
+    flex-grow:1;
+  }
+  .service-card .service-link{
+    font-family:'Cinzel', serif;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-weight:500;
+    color:var(--white);
+    margin-top:26px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border-bottom:1px solid var(--gray-line);
+    padding-bottom:10px;
+    width:fit-content;
+    transition: border-color .3s ease, gap .3s ease;
+  }
+  .service-card .service-link:hover{ border-color:var(--white); gap:12px; }
+
+  /* ---------- philosophy ---------- */
+  .philosophy{
+    min-height:78vh;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    background-color:var(--black-carbon);
+    position:relative;
+    overflow:hidden;
+  }
+  .philosophy-bg{
+    position:absolute; inset:0;
+    background-image:url('images/philosophy.jpg');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+  }
+  .philosophy-overlay{
+    position:absolute; inset:0;
+    background:rgba(5,5,5,0.72);
+  }
+  .philosophy-content{ position:relative; z-index:2; padding:0 24px; max-width:800px; }
+  .philosophy h2{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size:clamp(28px,5vw,50px);
+    letter-spacing:0.04em;
+    line-height:1.3;
+  }
+  .philosophy p{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--gray-light);
+    margin-top:22px;
+  }
+
+  /* ---------- gallery ---------- */
+  .gallery{ background:var(--black-deep); }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    grid-auto-rows:120px;
+    grid-auto-flow:dense;
+    gap:10px;
+  }
+  .g-item{
+    position:relative;
+    overflow:hidden;
+    background-color:var(--black-carbon);
+  }
+  .g-item img{
+    width:100%; height:100%; object-fit:cover;
+    transition: transform 1.1s var(--ease), filter .6s ease;
+    filter:grayscale(15%) contrast(1.05);
+  }
+  .g-item:hover img{ transform:scale(1.06); filter:grayscale(0%) contrast(1.05); }
+  .g-item::after{
+    content:"";
+    position:absolute; inset:0;
+    box-shadow:inset 0 0 0 1px var(--gray-line);
+  }
+  .g1{ grid-column: span 3; grid-row: span 4; }
+  .g2{ grid-column: span 3; grid-row: span 3; }
+  .g3{ grid-column: span 2; grid-row: span 3; }
+  .g4{ grid-column: span 2; grid-row: span 4; }
+  .g5{ grid-column: span 2; grid-row: span 3; }
+  .g6{ grid-column: span 3; grid-row: span 3; }
+  .g7{ grid-column: span 3; grid-row: span 3; }
+  .g8{ grid-column: span 3; grid-row: span 3; }
+
+  /* ---------- schedule ---------- */
+  .schedule{
+    background:var(--black-carbon);
+    border-top:1px solid var(--gray-line);
+    border-bottom:1px solid var(--gray-line);
+  }
+  .schedule-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .schedule-col{
+    text-align:center;
+    padding:20px 30px;
+    position:relative;
+  }
+  .schedule-col:first-child{ border-right:1px solid var(--gray-line); }
+  .schedule-col .eyebrow{ margin-bottom:22px; }
+  .schedule-col .time{
+    font-family:'Cinzel', serif;
+    font-weight:500;
+    font-size:clamp(28px,4.4vw,44px);
+    letter-spacing:0.02em;
+    color:var(--white);
+  }
+
+  /* ---------- reserve / contact ---------- */
+  .contact{
+    background-color:var(--black-deep);
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-bg{
+    position:absolute; inset:0;
+    background-image:url('images/gallery-6.jpg');
+    background-size:cover;
+    background-position:center 25%;
+  }
+  .contact-overlay{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(5,5,5,0.88) 0%, rgba(5,5,5,0.93) 40%, rgba(5,5,5,0.97) 100%);
+  }
+  .contact .wrap{ position:relative; z-index:2; }
+  .contact-inner{ text-align:center; max-width:620px; margin:0 auto; }
+  .contact h2{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    font-size:clamp(28px,4.4vw,44px);
+    letter-spacing:0.06em;
+  }
+  .contact .lead{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--gray-light);
+    margin-top:16px;
+  }
+  .contact-cta{ margin-top:40px; }
+  .contact-details{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border-top:1px solid var(--gray-line);
+  }
+  .contact-detail{
+    padding:34px 20px;
+    border-right:1px solid var(--gray-line);
+    transition:background .35s ease;
+  }
+  .contact-detail:last-child{ border-right:none; }
+  .contact-detail:hover{ background:var(--black-carbon); }
+  .contact-detail .eyebrow{ margin-bottom:14px; }
+  .contact-detail .value{
+    font-family:'Cormorant Garamond', serif;
+    font-size:19px;
+    letter-spacing:0.02em;
+  }
+  .contact-detail .value.sans{
+    font-family:'Oswald', sans-serif;
+    font-size:16px;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- final cta ---------- */
+  .final-cta{
+    text-align:center;
+    padding:150px 24px;
+    background:var(--black-deep);
+    border-top:1px solid var(--gray-line);
+  }
+  .final-logo-img{ width:clamp(96px,12vw,140px); height:auto; margin:0 auto; display:block; }
+  .final-cta .tagline{
+    font-family:'Cinzel', serif;
+    font-weight:500;
+    font-size:clamp(18px,2.6vw,26px);
+    letter-spacing:0.04em;
+    margin:36px 0 44px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--black-deep);
+    border-top:1px solid var(--gray-line);
+    padding:70px 0 30px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:50px;
+  }
+  .footer-brand .nav-logo{ margin-bottom:18px; }
+  .footer-brand p{
+    font-family:'Cormorant Garamond', serif;
+    color:var(--gray-light);
+    font-size:16px;
+    max-width:32ch;
+  }
+  .footer-col h4{
+    font-family:'Oswald', sans-serif;
+    font-size:12px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gray-light);
+    margin-bottom:20px;
+  }
+  .footer-col a{
+    display:block;
+    font-family:'Cormorant Garamond', serif;
+    font-size:17px;
+    color:var(--white);
+    margin-bottom:12px;
+    width:fit-content;
+    position:relative;
+  }
+  .footer-col a::after{
+    content:"";
+    position:absolute; left:0; bottom:-2px;
+    width:0; height:1px; background:var(--white);
+    transition:width .3s var(--ease);
+  }
+  .footer-col a:hover::after{ width:100%; }
+  .footer-bottom{
+    border-top:1px solid var(--gray-line);
+    padding-top:26px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Oswald', sans-serif;
+    font-size:11px;
+    letter-spacing:0.14em;
+    color:var(--gray-light);
+    text-transform:uppercase;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-img{ min-height:340px; }
+    .about-text{ padding:56px 28px; }
+
+    .services-grid{ grid-template-columns:1fr; }
+
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:150px; }
+    .g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8{ grid-column:span 1; grid-row:span 2; }
+    .g1{ grid-column:span 2; grid-row:span 3; }
+
+    .contact-details{ grid-template-columns:1fr; }
+    .contact-detail{ border-right:none; border-bottom:1px solid var(--gray-line); }
+    .contact-detail:last-child{ border-bottom:none; }
+
+    .footer-grid{ grid-template-columns:1fr; gap:36px; }
+    .footer-bottom{ flex-direction:column; gap:14px; text-align:center; }
+  }
+
+  @media (max-width: 560px){
+    .section-pad{ padding:90px 0; }
+    .hero .l2{ letter-spacing:0.4em; }
+    .schedule-col{ padding:16px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAVBAR ============ -->
+<header id="site-header">
+  <div class="wrap nav-inner">
+    <a href="#inicio" class="nav-logo">
+      <img src="images/logo.png" alt="Natural Hair Men" class="nav-logo-img">
+    </a>
+    <button class="burger" id="burger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#sobre-nosotros">Sobre Nosotros</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+    <a href="tel:622167397" class="btn btn-fill mobile-menu-cta"><span>Reservar Cita</span></a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img src="images/logo.png" alt="Natural Hair Men" class="hero-logo-img reveal is-visible">
+    <div class="hero-sub">Peluquería Masculina</div>
+    <div class="hero-quote">"Estilo, precisión y personalidad."</div>
+    <div class="hero-actions">
+      <a href="tel:622167397" class="btn btn-fill"><span>Reservar Cita</span></a>
+      <a href="#servicios" class="btn"><span>Ver Servicios</span></a>
+    </div>
+  </div>
+  <div class="scroll-cue"></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about section-pad" id="sobre-nosotros">
+  <div class="wrap">
+    <div class="about-grid reveal">
+      <div class="about-img"></div>
+      <div class="about-text">
+        <span class="eyebrow">Sobre Natural Hair Men</span>
+        <h2>Natural Hair Men</h2>
+        <p class="lead">Más que un corte. Una forma de entender el estilo.</p>
+        <p class="body-copy">En Natural Hair Men cuidamos cada detalle para ofrecer una experiencia de peluquería masculina diferente. Combinamos técnica, precisión y estilo para conseguir un resultado que encaje contigo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="services section-pad" id="servicios">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Servicios</span>
+      <h2>Servicios</h2>
+      <p>Cuidado masculino, precisión y estilo.</p>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-index">01</span>
+      <h3>Corte de Pelo</h3>
+      <p>Corte personalizado adaptado a tu estilo y tipo de cabello.</p>
+      <a href="#reserva" class="service-link">Consultar Servicio →</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-index">02</span>
+      <h3>Corte + Barba</h3>
+      <p>Servicio completo de corte y arreglo de barba.</p>
+      <a href="#reserva" class="service-link">Consultar Servicio →</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-index">03</span>
+      <h3>Arreglo de Barba</h3>
+      <p>Definición, perfilado y cuidado de la barba.</p>
+      <a href="#reserva" class="service-link">Consultar Servicio →</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-index">04</span>
+      <h3>Afeitado</h3>
+      <p>Afeitado masculino tradicional y acabado profesional.</p>
+      <a href="#reserva" class="service-link">Consultar Servicio →</a>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-index">05</span>
+      <h3>Corte Infantil</h3>
+      <p>Cortes para los más pequeños.</p>
+      <a href="#reserva" class="service-link">Consultar Servicio →</a>
+    </div>
+    <div class="service-card reveal" style="align-items:center; justify-content:center; text-align:center;">
+      <p style="font-family:'Cormorant Garamond', serif; font-style:italic; font-size:19px; color:var(--gray-light); margin:0;">¿No encuentras lo que buscas?</p>
+      <a href="#reserva" class="btn" style="margin-top:20px;"><span>Consultar</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PHILOSOPHY ============ -->
+<section class="philosophy">
+  <div class="philosophy-bg"></div>
+  <div class="philosophy-overlay"></div>
+  <div class="philosophy-content reveal">
+    <h2>"Tu estilo habla por ti."</h2>
+    <p>Nosotros nos encargamos de que diga exactamente lo que quieres.</p>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery section-pad" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nuestro Trabajo</span>
+      <h2>Nuestro Trabajo</h2>
+      <p>Cada corte tiene su propia personalidad.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="gallery-grid reveal">
+      <div class="g-item g1"><img src="images/gallery-1.jpg" alt="Afeitado tradicional en Natural Hair Men" loading="lazy"></div>
+      <div class="g-item g2"><img src="images/gallery-2.jpg" alt="Arreglo de barba en Natural Hair Men" loading="lazy"></div>
+      <div class="g-item g3"><img src="images/gallery-3.jpg" alt="Detalle de peinado en Natural Hair Men" loading="lazy"></div>
+      <div class="g-item g4"><img src="images/gallery-4.jpg" alt="Fachada de Natural Hair Men" loading="lazy"></div>
+      <div class="g-item g5"><img src="images/gallery-5.jpg" alt="Cliente en la puerta de Natural Hair Men" loading="lazy"></div>
+      <div class="g-item g6"><img src="images/gallery-6.jpg" alt="Fachada de Natural Hair Men, blanco y negro" loading="lazy"></div>
+      <div class="g-item g7"><img src="images/gallery-7.jpg" alt="Clientes en la puerta de Natural Hair Men" loading="lazy"></div>
+      <div class="g-item g8"><img src="images/gallery-8.jpg" alt="Cliente Natural Hair Men" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HORARIO ============ -->
+<section class="schedule section-pad-sm">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Horario</span>
+      <h2>Horario</h2>
+    </div>
+    <div class="schedule-grid reveal">
+      <div class="schedule-col">
+        <span class="eyebrow">Mañana</span>
+        <div class="time">9:30 — 13:30</div>
+      </div>
+      <div class="schedule-col">
+        <span class="eyebrow">Tarde</span>
+        <div class="time">16:00 — 20:00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVA / CONTACTO ============ -->
+<section class="contact section-pad" id="contacto">
+  <div class="contact-bg"></div>
+  <div class="contact-overlay"></div>
+  <div class="wrap">
+    <div class="contact-inner reveal">
+      <span class="eyebrow">Reserva</span>
+      <h2 id="reserva">Reserva Tu Cita</h2>
+      <p class="lead">¿Listo para tu próximo corte?</p>
+      <div class="contact-cta">
+        <a href="tel:622167397" class="btn btn-fill"><span>Reservar Cita</span></a>
+      </div>
+    </div>
+
+    <div class="contact-details reveal">
+      <div class="contact-detail">
+        <span class="eyebrow">Teléfono</span>
+        <a class="value sans" href="tel:622167397">622 167 397</a>
+      </div>
+      <div class="contact-detail">
+        <span class="eyebrow">Instagram</span>
+        <a class="value" href="https://www.instagram.com/naturalhair_men" target="_blank" rel="noopener">@NATURALHAIR_MEN</a>
+      </div>
+      <div class="contact-detail">
+        <span class="eyebrow">Dirección</span>
+        <a class="value" href="https://www.google.com/maps/search/?api=1&query=C%2F+Mendez+Nu%C3%B1ez+4%2C+11300" target="_blank" rel="noopener">C/ Mendez Nuñez 4, 11300</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <img src="images/logo.png" alt="Natural Hair Men" class="final-logo-img reveal">
+  <p class="tagline reveal">Tu próximo estilo empieza aquí.</p>
+  <a href="tel:622167397" class="btn btn-fill reveal"><span>Reservar Cita</span></a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="images/logo.png" alt="Natural Hair Men" class="nav-logo-img">
+        </div>
+        <p>Peluquería masculina. Estilo, precisión y personalidad.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="https://www.instagram.com/naturalhair_men" target="_blank" rel="noopener">@naturalhair_men</a>
+        <a href="tel:622167397">622 167 397</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=C%2F+Mendez+Nu%C3%B1ez+4%2C+11300" target="_blank" rel="noopener">C/ Mendez Nuñez 4, 11300</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Natural Hair Men</span>
+      <span>Peluquería Masculina</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- navbar scroll state ----
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    if(window.scrollY > 40){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  };
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  // ---- mobile menu ----
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', ()=>{
+    burger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      burger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // ---- scroll reveal ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.15 });
+  revealEls.forEach(el=> io.observe(el));
+</script>
+
+</body>
+</html>

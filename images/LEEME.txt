@@ -1,0 +1,29 @@
+CARPETA DE IMÁGENES — NATURAL HAIR MEN
+========================================
+
+Ya están puestas tus fotos reales y tu logotipo definitivo (transparente,
+sin círculo) en el sitio: nav, portada, CTA final y footer.
+
+Si en el futuro quieres cambiar cualquier foto, sustituye el archivo por
+otra tuya que se llame EXACTAMENTE igual (mismo nombre, misma extensión
+.jpg). No hace falta tocar el código: la web ya apunta a estos nombres.
+
+logo.png            → Tu logotipo real, transparente. No lo toques.
+
+hero.jpg            → Foto de portada (pantalla de inicio).
+about.jpg           → Foto de la sección "Sobre Nosotros" (vertical).
+philosophy.jpg      → Foto grande de "Tu estilo habla por ti" (ancha).
+
+gallery-1.jpg … gallery-8.jpg → Las 8 fotos de la sección "Nuestro Trabajo".
+                     El grid es asimétrico (tipo editorial), así que no
+                     necesitan ser todas del mismo tamaño ni proporción.
+
+CONSEJOS
+--------
+- Usa fotos con buena luz, tonos oscuros/contraste alto (nada de flash
+  plano ni fondos claros) para mantener la estética premium.
+- No es necesario que las medidas sean exactas: solo intenta respetar
+  si es "vertical", "horizontal" o "cuadrada" para que el recorte
+  quede bien encajado.
+- Si quieres añadir más fotos a la galería, dímelo y amplío la
+  cuadrícula.
